@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "flow": "flow",
-    "prettier": "prettier --write '**/*.js'",
+    "prettier": "prettier --write index.js 'src/**/*.js'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.3",
     "react-navigation": "^2.18.0",
@@ -17,20 +18,25 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-jest": "23.6.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "flow-bin": "^0.78.0",
     "husky": "^1.1.2",
-    "jest": "23.6.0",
+    "jest": "^23.6.0",
     "metro-react-native-babel-preset": "0.48.1",
     "prettier": "1.14.3",
-    "react-test-renderer": "16.6.0-alpha.8af6728"
+    "react-test-renderer": "16.6.0-alpha.8af6728",
+    "regenerator-runtime": "^0.12.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    }
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier && yarn run flow"
+      "pre-commit": "npm run prettier && yarn run flow && yarn test"
     }
   }
 }

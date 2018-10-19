@@ -20,7 +20,7 @@ declare module 'react-navigation' {
     | false
     | ''
     | $ReadOnlyArray<StyleObj>
-    | {[name: string]: any};
+    | { [name: string]: any };
   declare type ViewStyleProp = StyleObj;
   declare type TextStyleProp = StyleObj;
   declare type AnimatedViewStyleProp = StyleObj;
@@ -391,7 +391,7 @@ declare module 'react-navigation' {
     headerForceInset?: HeaderForceInset,
     headerBackground?: React$Node | React$ElementType,
     gesturesEnabled?: boolean,
-    gestureResponseDistance?: {vertical?: number, horizontal?: number},
+    gestureResponseDistance?: { vertical?: number, horizontal?: number },
     gestureDirection?: 'default' | 'inverted',
   };
 
@@ -466,13 +466,13 @@ declare module 'react-navigation' {
     ...$Exact<NavigationScreenOptions>,
     tabBarIcon?:
       | React$Node
-      | ((options: {tintColor: ?string, focused: boolean}) => ?React$Node),
+      | ((options: { tintColor: ?string, focused: boolean }) => ?React$Node),
     tabBarLabel?:
       | string
       | React$Node
-      | ((options: {tintColor: ?string, focused: boolean}) => ?React$Node),
+      | ((options: { tintColor: ?string, focused: boolean }) => ?React$Node),
     tabBarVisible?: boolean,
-    tabBarTestIDProps?: {testID?: string, accessibilityLabel?: string},
+    tabBarTestIDProps?: { testID?: string, accessibilityLabel?: string },
     tabBarOnPress?: ({
       navigation: NavigationScreenProp<NavigationRoute>,
       defaultHandler: () => void,
@@ -487,10 +487,10 @@ declare module 'react-navigation' {
     ...$Exact<NavigationScreenOptions>,
     drawerIcon?:
       | React$Node
-      | ((options: {tintColor: ?string, focused: boolean}) => ?React$Node),
+      | ((options: { tintColor: ?string, focused: boolean }) => ?React$Node),
     drawerLabel?:
       | React$Node
-      | ((options: {tintColor: ?string, focused: boolean}) => ?React$Node),
+      | ((options: { tintColor: ?string, focused: boolean }) => ?React$Node),
     drawerLockMode?: 'unlocked' | 'locked-closed' | 'locked-open',
   |};
 
@@ -555,8 +555,8 @@ declare module 'react-navigation' {
     ) => boolean,
     setParams: (newParams: NavigationParams) => boolean,
     // StackRouter action creators
-    pop?: (n?: number, params?: {immediate?: boolean}) => boolean,
-    popToTop?: (params?: {immediate?: boolean}) => boolean,
+    pop?: (n?: number, params?: { immediate?: boolean }) => boolean,
+    popToTop?: (params?: { immediate?: boolean }) => boolean,
     push?: (
       routeName: string,
       params?: NavigationParams,
@@ -780,8 +780,8 @@ declare module 'react-navigation' {
     NAVIGATE: 'Navigation/NAVIGATE',
     SET_PARAMS: 'Navigation/SET_PARAMS',
 
-    back: (payload?: {key?: ?string}) => NavigationBackAction,
-    init: (payload?: {params?: NavigationParams}) => NavigationInitAction,
+    back: (payload?: { key?: ?string }) => NavigationBackAction,
+    init: (payload?: { params?: NavigationParams }) => NavigationInitAction,
     navigate: (payload: {
       routeName: string,
       params?: ?NavigationParams,
@@ -861,7 +861,7 @@ declare module 'react-navigation' {
   };
 
   declare type NavigationView<O, S> = React$ComponentType<{
-    descriptors: {[key: string]: NavigationDescriptor},
+    descriptors: { [key: string]: NavigationDescriptor },
     navigation: NavigationScreenProp<S>,
   }>;
 
@@ -1199,7 +1199,7 @@ declare module 'react-navigation' {
   >;
   declare export function withNavigationFocus<Props: {}>(
     Component: React$ComponentType<Props>
-  ): React$ComponentType<$Diff<Props, {isFocused: boolean | void}>>;
+  ): React$ComponentType<$Diff<Props, { isFocused: boolean | void }>>;
 
   declare export function getNavigation<State: NavigationState, Options: {}>(
     router: NavigationRouter<State, Options>,

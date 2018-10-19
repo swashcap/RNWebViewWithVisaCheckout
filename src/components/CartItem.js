@@ -56,8 +56,9 @@ const styles = StyleSheet.create({
 type Props = {
   imageUri: string,
   name: string,
-  onQuantityChange: (newQuantity: number) => void,
-  onSaveForLaterPress: Function,
+  onQuantityChange: (quantity: number) => void,
+  onSaveForLaterPress: () => void,
+  onRemovePress: () => void,
   price: string,
   quantity: number,
   salePrice?: string,

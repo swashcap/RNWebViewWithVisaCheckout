@@ -10,8 +10,8 @@ import React, {Component} from 'react';
 import {createStackNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 
-import Cart from './components/Cart';
-import Checkout from './components/Checkout';
+import Cart from './containers/Cart';
+import Checkout from './containers/Checkout';
 import configureStore from './store/configureStore';
 
 const StackNavigator = createStackNavigator(
