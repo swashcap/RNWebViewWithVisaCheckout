@@ -14,8 +14,7 @@ app.use(logger())
 render(app, {
   root: path.join(__dirname, 'view'),
   layout: false,
-  cache: process.env.NODE_ENV !== 'development',
-  debug: process.env.NODE_ENV === 'development'
+  cache: process.env.NODE_ENV !== 'development'
 })
 
 app.use(async (ctx) => {
