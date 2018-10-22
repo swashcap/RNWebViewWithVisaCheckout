@@ -31,27 +31,27 @@ button {
   text-decoration: underline;
 }
 
-.checkout-totals {
+.order-summary {
   border-collapse: collapse;
   width: 100%;
 }
-.checkout-totals th,
-.checkout-totals td {
+.order-summary th,
+.order-summary td {
   padding: .33em .5em;
 }
-.checkout-totals tbody > tr:last-child > * {
+.order-summary tbody > tr:last-child > * {
   padding-bottom: .75em;
 }
-.checkout-totals th {
+.order-summary th {
   font-weight: inherit;
   text-align: left;
 }
-.checkout-totals td {
+.order-summary td {
   font-weight: 700;
   text-align: right;
 }
-.checkout-totals tfoot th,
-.checkout-totals tfoot td {
+.order-summary tfoot th,
+.order-summary tfoot td {
   border-top: thin solid gray;
   font-size: 125%;
   line-height: 1.25;
