@@ -1,0 +1,68 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 40em;
+  padding: 1em;
+}
+
+form {
+  margin: 1em 0 1em;
+  text-align: center;
+}
+
+button {
+  background: transparent;
+  border: 1px solid royalblue;
+  border-radius: 4px;
+  color: royalblue;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px 20px;
+  text-decoration: underline;
+}
+
+.checkout-totals {
+  border-collapse: collapse;
+  width: 100%;
+}
+.checkout-totals th,
+.checkout-totals td {
+  padding: .33em .5em;
+}
+.checkout-totals tbody > tr:last-child > * {
+  padding-bottom: .75em;
+}
+.checkout-totals th {
+  font-weight: inherit;
+  text-align: left;
+}
+.checkout-totals td {
+  font-weight: 700;
+  text-align: right;
+}
+.checkout-totals tfoot th,
+.checkout-totals tfoot td {
+  border-top: thin solid gray;
+  font-size: 125%;
+  line-height: 1.25;
+}
+
+.visa-checkout {
+  text-align: center;
+}
+.visa-checkout span {
+  color: gray;
+  display: block;
+  font-size: 17;
+  margin-bottom: 1rem;
+}
