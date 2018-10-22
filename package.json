@@ -1,0 +1,23 @@
+{
+  "name": "RNWebViewWithVisaCheckout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:swashcap/RNWebViewWithVisaCheckout.git",
+  "author": "Cory Reed <swashcap@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "flow-bin": "^0.78.0",
+    "husky": "^1.1.2",
+    "prettier": "^1.14.3"
+  },
+  "scripts": {
+    "flow": "flow",
+    "prettier": "prettier --write 'client/**/*.js'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run prettier && yarn run flow"
+    }
+  }
+}
