@@ -1,4 +1,6 @@
 // @flow
+require('dotenv').config()
+
 const Koa = require('koa')
 const logger = require('koa-logger')
 const render = require('koa-ejs')
@@ -6,7 +8,7 @@ const path = require('path')
 
 const app = new Koa();
 const port = process.env.PORT || 4000
-const VISA_CHECKOUT_API_KEY = process.env.API_KEY;
+const VISA_CHECKOUT_API_KEY = process.env.VISA_CHECKOUT_API_KEY;
 
 app.use(logger())
 render(app, {
