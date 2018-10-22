@@ -13,7 +13,7 @@
   },
   "scripts": {
     "flow": "flow",
-    "prettier": "prettier --write 'client/**/*.js'"
+    "prettier": "prettier --write 'client/**/*.js' 'server/**/*.js'"
   },
   "husky": {
     "hooks": {

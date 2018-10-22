@@ -3,17 +3,17 @@ function onVisaCheckoutReady() {
   V.init({
     apikey: window.__VISA_CHECKOUT_API_KEY,
     paymentRequest: {
-      currencyCode: "USD",
+      currencyCode: 'USD',
       subtotal: 10,
-    }
+    },
   });
-  V.on("payment.success", function(payment) {
+  V.on('payment.success', function(payment) {
     console.log(payment);
   });
-  V.on("payment.cancel", function(payment) {
+  V.on('payment.cancel', function(payment) {
     console.log(payment);
   });
-  V.on("payment.error", function(payment, error) {
+  V.on('payment.error', function(payment, error) {
     console.error(error);
     console.log(payment);
   });
