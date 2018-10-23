@@ -1,12 +1,6 @@
-// https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_your_web_page
-function onVisaCheckoutReady() {
-  V.init({
-    apikey: window.__VISA_CHECKOUT_API_KEY,
-    paymentRequest: {
-      currencyCode: 'USD',
-      subtotal: 10,
-    },
-  });
+function init() {
+  setOrderSummary();
+
   V.on('payment.success', function(payment) {
     console.log(payment);
   });
@@ -17,4 +11,23 @@ function onVisaCheckoutReady() {
     console.error(error);
     console.log(payment);
   });
+}
+
+function formatPrice(value) {
+  return '$' + value.toFixed(2);
+}
+
+function setOrderSummary() {
+  var subtotalEl = document.getElementById('order-summary-subtotal');
+  var subtotal = parseFloat(subtotalEl.getAttribute('data-value'));
+  var shipping = 5;
+  var taxes = (subtotal + shipping) * 0.0875;
+  var total = subtotal + shipping + taxes;
+
+  subtotalEl.innerText = formatPrice(subtotal);
+  document.getElementById('order-summary-shipping').innerText = formatPrice(
+    shipping
+  );
+  document.getElementById('order-summary-taxes').innerText = formatPrice(taxes);
+  document.getElementById('order-summary-total').innerText = formatPrice(total);
 }

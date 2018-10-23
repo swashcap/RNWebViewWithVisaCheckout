@@ -23,7 +23,7 @@ const StackNavigator = createStackNavigator(
     cardStyle: {
       backgroundColor: 'white',
     },
-    initialRouteName: 'Checkout',
+    initialRouteName: 'Cart',
   }
 );
 const store = configureStore();

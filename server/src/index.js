@@ -22,7 +22,20 @@ render(app, {
 
 app.use(
   get('/', async ctx => {
-    await ctx.render('index', {VISA_CHECKOUT_API_KEY});
+    let subtotal = 0;
+
+    if (ctx.query.total) {
+      const parsed = parseFloat(ctx.query.total);
+
+      if (!Number.isNaN(parsed)) {
+        subtotal = parsed;
+      }
+    }
+
+    await ctx.render('index', {
+      CHECKOUT_SUBTOTAL: subtotal,
+      VISA_CHECKOUT_API_KEY,
+    });
   })
 );
 
