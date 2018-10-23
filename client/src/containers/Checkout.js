@@ -54,7 +54,8 @@ class Checkout extends React.Component<Props> {
 
     if (typeof message === 'object' && message.type) {
       if (message.type === 'payment.success') {
-        debugger;
+        // debugger;
+        navigation.navigate('OrderConfirmation');
       } else if (message.type === 'payment.cancel') {
         dispatch(addMessage('Visa Checkout payment cancelled'));
         navigation.navigate('Error');
