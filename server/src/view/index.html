@@ -57,8 +57,34 @@
             subtotal: <%= CHECKOUT_SUBTOTAL %>
           },
         });
-        init();
+        V.on('payment.success', function(payment) {
+          postMessage(
+            JSON.stringify({
+              data: payment,
+              type: 'payment.success',
+            })
+          );
+        });
+        V.on('payment.cancel', function(payment) {
+          postMessage(
+            JSON.stringify({
+              data: payment,
+              type: 'payment.cancel',
+            })
+          );
+        });
+        V.on('payment.error', function(payment, error) {
+          postMessage(
+            JSON.stringify({
+              data: payment,
+              error: error,
+              type: 'payment.error',
+            })
+          );
+        });
       }
+
+      setOrderSummary();
     </script>
     <script type="text/javascript" src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>
   </body>

@@ -1,18 +1,3 @@
-function init() {
-  setOrderSummary();
-
-  V.on('payment.success', function(payment) {
-    console.log(payment);
-  });
-  V.on('payment.cancel', function(payment) {
-    console.log(payment);
-  });
-  V.on('payment.error', function(payment, error) {
-    console.error(error);
-    console.log(payment);
-  });
-}
-
 function formatPrice(value) {
   return '$' + value.toFixed(2);
 }
