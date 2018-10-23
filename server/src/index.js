@@ -8,36 +8,19 @@ const koaStatic = require('koa-static');
 const {get} = require('koa-route');
 const path = require('path');
 
+const checkout = require('./routes/checkout.js');
+
 const app = new Koa();
 const port = process.env.PORT || 4000;
-const VISA_CHECKOUT_API_KEY = process.env.VISA_CHECKOUT_API_KEY;
 
 app.use(logger());
 app.use(koaStatic(path.resolve(__dirname, '../public')));
 render(app, {
   root: path.join(__dirname, 'view'),
-  layout: false,
   cache: process.env.NODE_ENV !== 'development',
 });
 
-app.use(
-  get('/checkout', async ctx => {
-    let subtotal = 0;
-
-    if (ctx.query.total) {
-      const parsed = parseFloat(ctx.query.total);
-
-      if (!Number.isNaN(parsed)) {
-        subtotal = parsed;
-      }
-    }
-
-    await ctx.render('checkout', {
-      CHECKOUT_SUBTOTAL: subtotal,
-      VISA_CHECKOUT_API_KEY,
-    });
-  })
-);
+app.use(get('/checkout', checkout));
 
 if (require.main === module) {
   app.listen(port);

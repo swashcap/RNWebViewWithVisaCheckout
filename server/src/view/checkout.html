@@ -1,91 +1,76 @@
-<!doctype>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Checkout</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.css">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <main>
-      <table class="order-summary">
-        <tbody>
-          <tr>
-            <th scope="row">Subtotal</th>
-            <td data-value="<%= CHECKOUT_SUBTOTAL %>" id="order-summary-subtotal"></td>
-          </tr>
-          <tr>
-            <th scope="row">Shipping</th>
-            <td id="order-summary-shipping"></td>
-          </tr>
-          <tr>
-            <th scope="row">Taxes</th>
-            <td id="order-summary-taxes"></td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th scope="row">Total</th>
-            <td id="order-summary-total"></td>
-          </tr>
-        </tfoot>
-      </table>
+<main>
+  <table class="order-summary">
+    <tbody>
+      <tr>
+        <th scope="row">Subtotal</th>
+        <td><%= display.subtotal %></td>
+      </tr>
+      <tr>
+        <th scope="row">Shipping</th>
+        <td><%= display.shipping %></td>
+      </tr>
+      <tr>
+        <th scope="row">Taxes</th>
+        <td><%= display.taxes %></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">Total</th>
+        <td><%= display.total %></td>
+      </tr>
+    </tfoot>
+  </table>
 
-      <form type="post">
-        <button type="submit">Checkout</button>
-      </form>
+  <form type="post">
+    <button type="submit">Checkout</button>
+  </form>
 
-      <div class="visa-checkout">
-        <span>or</span>
-        <img
-          alt="Visa Checkout"
-          class="v-button"
-          role="button"
-          src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"
-        />
-      </div>
-    </main>
-    <script type="text/javascript" src="main.js"></script>
-    <script type="text/javascript">
-      // https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_your_web_page
-      function onVisaCheckoutReady() {
-        V.init({
-          apikey: "<%= VISA_CHECKOUT_API_KEY %>",
-          paymentRequest: {
-            currencyCode: 'USD',
-            subtotal: <%= CHECKOUT_SUBTOTAL %>
-          },
-        });
-        V.on('payment.success', function(payment) {
-          postMessage(
-            JSON.stringify({
-              data: payment,
-              type: 'payment.success',
-            })
-          );
-        });
-        V.on('payment.cancel', function(payment) {
-          postMessage(
-            JSON.stringify({
-              data: payment,
-              type: 'payment.cancel',
-            })
-          );
-        });
-        V.on('payment.error', function(payment, error) {
-          postMessage(
-            JSON.stringify({
-              data: payment,
-              error: error,
-              type: 'payment.error',
-            })
-          );
-        });
-      }
-
-      setOrderSummary();
-    </script>
-    <script type="text/javascript" src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>
-  </body>
-</html>
+  <div class="visa-checkout">
+    <span>or</span>
+    <img
+      alt="Visa Checkout"
+      class="v-button"
+      role="button"
+      src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"
+    />
+  </div>
+</main>
+<script type="text/javascript">
+  // https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_your_web_page
+  function onVisaCheckoutReady() {
+    V.init({
+      apikey: "<%= VISA_CHECKOUT_API_KEY %>",
+      paymentRequest: {
+        currencyCode: 'USD',
+        subtotal: <%= total %>
+      },
+    });
+    V.on('payment.success', function(payment) {
+      postMessage(
+        JSON.stringify({
+          data: payment,
+          type: 'payment.success',
+        })
+      );
+    });
+    V.on('payment.cancel', function(payment) {
+      postMessage(
+        JSON.stringify({
+          data: payment,
+          type: 'payment.cancel',
+        })
+      );
+    });
+    V.on('payment.error', function(payment, error) {
+      postMessage(
+        JSON.stringify({
+          data: payment,
+          error: error,
+          type: 'payment.error',
+        })
+      );
+    });
+  }
+</script>
+<script type="text/javascript" src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>
