@@ -7,6 +7,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
     "flow-bin": "^0.78.0",
     "husky": "^1.1.2",
     "prettier": "^1.14.3"
@@ -17,6 +19,7 @@
   },
   "husky": {
     "hooks": {
+      "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn run prettier && yarn run flow"
     }
   }
