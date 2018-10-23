@@ -2,8 +2,12 @@
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
+import type {Dispatch} from 'redux';
+import map from 'lodash/map';
 import type {NavigationScreenProp} from 'react-navigation';
 
+import {clearMessages} from '../actions/errors';
+import type {ErrorsState} from '../reducers/errors';
 import PrimaryButton from '../components/PrimaryButton';
 
 const styles = StyleSheet.create({
@@ -24,29 +28,51 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 17,
-    marginBottom: 40,
+    marginBottom: 10,
     textAlign: 'center',
   },
+  messagesWrapper: {
+    marginBottom: 30
+  }
 });
 
 type Props = {
-  message: ?string,
+  dispatch: Dispatch<any>,
+  errors: ErrorsState,
   navigation: NavigationScreenProp<any>,
 };
 
 class Error extends React.Component<Props> {
   handlePress = () => {
-    this.props.navigation.navigate('Cart');
+    const {dispatch, navigation} = this.props;
+
+    dispatch(clearMessages());
+    navigation.navigate('Cart');
   };
 
-  render() {
-    const {message} = this.props;
-    const content = message ? message : 'An unknown error occurred';
+  renderMessages = () => {
+    const {errors} = this.props;
 
+    if (!Object.keys(errors).length) {
+      return <Text style={styles.message}>An unknown error occurred</Text>
+    }
+
+    return (
+      <React.Fragment>
+        {map(errors, ({message}, key) => (
+          <Text key={key} style={styles.message}>{message}</Text>
+        ))}
+      </React.Fragment>
+    );
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.emoji}>😵</Text>
-        <Text style={styles.message}>{content}</Text>
+        <View style={styles.messagesWrapper}>
+          {this.renderMessages()}
+        </View>
         <View style={styles.buttonWrapper}>
           <PrimaryButton onPress={this.handlePress}>
             Return to Cart
@@ -57,4 +83,4 @@ class Error extends React.Component<Props> {
   }
 }
 
-export default connect()(Error);
+export default connect(({ errors }) => ({ errors }))(Error);
