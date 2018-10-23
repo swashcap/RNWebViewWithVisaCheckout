@@ -21,7 +21,7 @@ render(app, {
 });
 
 app.use(
-  get('/', async ctx => {
+  get('/checkout', async ctx => {
     let subtotal = 0;
 
     if (ctx.query.total) {
@@ -32,7 +32,7 @@ app.use(
       }
     }
 
-    await ctx.render('index', {
+    await ctx.render('checkout', {
       CHECKOUT_SUBTOTAL: subtotal,
       VISA_CHECKOUT_API_KEY,
     });

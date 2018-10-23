@@ -37,7 +37,7 @@ class Checkout extends React.Component<Props> {
   getSourceURI = () => {
     const {total} = this.props;
 
-    return `http://dev.walmart.com:4000?total=${total}`;
+    return `http://dev.walmart.com:4000/checkout?total=${total}`;
   };
 
   /**
