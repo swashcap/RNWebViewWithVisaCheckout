@@ -12,12 +12,14 @@ import {Provider} from 'react-redux';
 
 import Cart from './containers/Cart';
 import Checkout from './containers/Checkout';
+import Error from './containers/Error';
 import configureStore from './store/configureStore';
 
 const StackNavigator = createStackNavigator(
   {
     Cart,
     Checkout,
+    Error,
   },
   {
     cardStyle: {

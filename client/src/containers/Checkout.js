@@ -2,9 +2,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {WebView} from 'react-native';
+import type {Dispatch} from 'redux';
+import type {NavigationScreenProp} from 'react-navigation';
+
+import {addMessage} from '../actions/errors';
 import type {CartState} from '../reducers/cart';
 
 type Props = {
+  dispatch: Dispatch<any>,
+  navigation: NavigationScreenProp<any>,
   total: number,
 };
 
@@ -39,20 +45,27 @@ class Checkout extends React.Component<Props> {
    * the Visa JavaScript SDK. Look for expected object shapes.
    */
   handleMessage = (event: WebViewMessageEvent) => {
+    const {dispatch, navigation} = this.props;
     let message;
 
     try {
       message = JSON.parse(event.nativeEvent.data);
     } catch (e) {}
 
-    if (
-      typeof message === 'object' &&
-      message.type &&
-      (message.type === 'payment.success' ||
-        message.type === 'payment.cancel' ||
-        message.type === 'payment.error')
-    ) {
-      debugger;
+    if (typeof message === 'object' && message.type) {
+      if (message.type === 'payment.success') {
+        debugger;
+      } else if (message.type === 'payment.cancel') {
+        dispatch(addMessage('Visa Checkout payment cancelled'));
+        navigation.navigate('Error');
+      } else if (message.type === 'payment.error') {
+        dispatch(
+          addMessage(`Visa Checkout error:
+
+JSON.stringify(message.data)`)
+        );
+        navigation.navigate('Error');
+      }
     }
   };
 

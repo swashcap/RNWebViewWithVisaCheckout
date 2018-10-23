@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   messagesWrapper: {
-    marginBottom: 30
-  }
+    marginBottom: 30,
+  },
 });
 
 type Props = {
@@ -54,25 +54,25 @@ class Error extends React.Component<Props> {
     const {errors} = this.props;
 
     if (!Object.keys(errors).length) {
-      return <Text style={styles.message}>An unknown error occurred</Text>
+      return <Text style={styles.message}>An unknown error occurred</Text>;
     }
 
     return (
       <React.Fragment>
         {map(errors, ({message}, key) => (
-          <Text key={key} style={styles.message}>{message}</Text>
+          <Text key={key} style={styles.message}>
+            {message}
+          </Text>
         ))}
       </React.Fragment>
     );
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.emoji}>😵</Text>
-        <View style={styles.messagesWrapper}>
-          {this.renderMessages()}
-        </View>
+        <View style={styles.messagesWrapper}>{this.renderMessages()}</View>
         <View style={styles.buttonWrapper}>
           <PrimaryButton onPress={this.handlePress}>
             Return to Cart
@@ -83,4 +83,4 @@ class Error extends React.Component<Props> {
   }
 }
 
-export default connect(({ errors }) => ({ errors }))(Error);
+export default connect(({errors}) => ({errors}))(Error);
