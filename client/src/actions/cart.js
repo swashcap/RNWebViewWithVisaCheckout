@@ -1,7 +1,8 @@
+// @flow
 export type CartItemRemoveAction = {|
-  payload: {|
+  payload: {
     key: string,
-  |},
+  },
   type: 'CART_ITEM_REMOVE',
 |};
 
@@ -13,9 +14,9 @@ export const remove = (key: string): CartItemRemoveAction => ({
 });
 
 export type CartItemSaveForLaterAction = {|
-  payload: {|
+  payload: {
     key: string,
-  |},
+  },
   type: 'CART_ITEM_SAVE_FOR_LATER',
 |};
 
@@ -27,10 +28,10 @@ export const saveForLater = (key: string): CartItemSaveForLaterAction => ({
 });
 
 export type CartItemSetQuantityAction = {|
-  payload: {|
+  payload: {
     key: string,
     quantity: number,
-  |},
+  },
   type: 'CART_ITEM_SET_QUANTITY',
 |};
 

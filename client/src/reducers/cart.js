@@ -77,50 +77,50 @@ const INITIAL_STATE = {
 
 const reducer = (
   state: CartState = INITIAL_STATE,
-  {payload, type}: CartAction
+  action: CartAction
 ): CartState => {
-  switch (type) {
-    case CART_ITEM_REMOVE: {
-      const items = Object.assign({}, state.items);
+  const {payload, type} = action;
 
-      delete items[payload.key];
+  if (type === CART_ITEM_REMOVE) {
+    const items = Object.assign({}, state.items);
 
-      return {
-        items,
-        saveForLater: state.saveForLater,
-        total: getTotal(items),
-      };
-    }
-    case CART_ITEM_SAVE_FOR_LATER: {
-      const items = Object.assign({}, state.items);
+    delete items[payload.key];
 
-      delete items[payload.key];
+    return {
+      items,
+      saveForLater: state.saveForLater,
+      total: getTotal(items),
+    };
+  } else if (type === CART_ITEM_SAVE_FOR_LATER) {
+    const items = Object.assign({}, state.items);
 
-      return {
-        items,
-        saveForLater: {
-          ...state.saveForLater,
-          [payload.key]: state.items[payload.key],
-        },
-        total: getTotal(items),
-      };
-    }
-    case CART_ITEM_SET_QUANTITY: {
-      const items = Object.assign({}, state.items);
+    delete items[payload.key];
 
-      items[payload.key] = Object.assign({}, items[payload.key], {
-        quantity: payload.quantity,
-      });
+    return {
+      items,
+      saveForLater: {
+        ...state.saveForLater,
+        [payload.key]: state.items[payload.key],
+      },
+      total: getTotal(items),
+    };
+  } else if (type === CART_ITEM_SET_QUANTITY) {
+    const items = Object.assign({}, state.items);
 
-      return {
-        items,
-        saveForLater: state.saveForLater,
-        total: getTotal(items),
-      };
-    }
-    default:
-      return state;
+    items[payload.key] = Object.assign({}, items[payload.key], {
+      // Flow doesn't understand that `type` constrains the `payload`'s shape
+      // $FlowFixMe
+      quantity: payload.quantity,
+    });
+
+    return {
+      items,
+      saveForLater: state.saveForLater,
+      total: getTotal(items),
+    };
   }
+
+  return state;
 };
 
 export default reducer;
