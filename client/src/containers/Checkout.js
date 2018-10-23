@@ -1,14 +1,8 @@
 // @flow
 import React from 'react';
 import {connect} from 'react-redux';
-import {SafeAreaView, StyleSheet, WebView} from 'react-native';
+import {WebView} from 'react-native';
 import type {CartState} from '../reducers/cart';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 type Props = {
   total: number,
@@ -64,14 +58,12 @@ class Checkout extends React.Component<Props> {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <WebView
-          onMessage={this.handleMessage}
-          originWhitelist={['*']}
-          source={{uri: this.getSourceURI()}}
-          useWebKit
-        />
-      </SafeAreaView>
+      <WebView
+        onMessage={this.handleMessage}
+        originWhitelist={['*']}
+        source={{uri: this.getSourceURI()}}
+        useWebKit
+      />
     );
   }
 }
