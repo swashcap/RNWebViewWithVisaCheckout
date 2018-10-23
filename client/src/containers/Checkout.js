@@ -39,8 +39,8 @@ class Checkout extends React.Component<Props> {
       <SafeAreaView style={styles.container}>
         <WebView
           originWhitelist={['*']}
-          scalesPageToFit={false}
           source={{uri: this.getSourceURI()}}
+          useWebKit
         />
       </SafeAreaView>
     );
