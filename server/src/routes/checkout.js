@@ -1,8 +1,10 @@
 // @flow
 
 const VISA_CHECKOUT_API_KEY = process.env.VISA_CHECKOUT_API_KEY;
+const roundPrice = (value /*: number */) /*: number */ =>
+  Math.round(value * 100) / 100;
 const formatPrice = (value /*: number */) /*: string */ =>
-  `$${value.toFixed(2)}`;
+  `$${roundPrice(value).toFixed(2)}`;
 
 module.exports = async (ctx /*: any */) => {
   const shipping = 5;
@@ -26,7 +28,7 @@ module.exports = async (ctx /*: any */) => {
       taxes: formatPrice(taxes),
       total: formatPrice(total),
     },
-    total,
+    total: roundPrice(total),
     VISA_CHECKOUT_API_KEY,
   });
 };
