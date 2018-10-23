@@ -14,6 +14,12 @@ type Props = {
   total: number,
 };
 
+type WebViewMessageEvent = {
+  nativeEvent: {
+    data: string,
+  },
+};
+
 class Checkout extends React.Component<Props> {
   static navigationOptions = {
     title: 'Checkout',
@@ -34,10 +40,33 @@ class Checkout extends React.Component<Props> {
     return `http://dev.walmart.com:4000?total=${total}`;
   };
 
+  /**
+   * @note This catches all `window.postMessage` calls, including some made by
+   * the Visa JavaScript SDK. Look for expected object shapes.
+   */
+  handleMessage = (event: WebViewMessageEvent) => {
+    let message;
+
+    try {
+      message = JSON.parse(event.nativeEvent.data);
+    } catch (e) {}
+
+    if (
+      typeof message === 'object' &&
+      message.type &&
+      (message.type === 'payment.success' ||
+        message.type === 'payment.cancel' ||
+        message.type === 'payment.error')
+    ) {
+      debugger;
+    }
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <WebView
+          onMessage={this.handleMessage}
           originWhitelist={['*']}
           source={{uri: this.getSourceURI()}}
           useWebKit
