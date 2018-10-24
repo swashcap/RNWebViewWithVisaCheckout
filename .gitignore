@@ -57,3 +57,4 @@ buck-out/
 
 # Server secrets
 server/.env
+server/certs
