@@ -4,14 +4,11 @@ import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import type {NavigationScreenProp} from 'react-navigation';
 
+import Center from '../components/Center';
 import PrimaryButton from '../components/PrimaryButton';
 import type {CartItem as CartItemType, CartState} from '../reducers/cart';
 
 const styles = StyleSheet.create({
-  buttonWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
   container: {
     paddingBottom: 20,
     paddingTop: 30,
@@ -77,11 +74,11 @@ class OrderConfirmation extends React.Component<Props> {
             );
           })}
         </View>
-        <View style={styles.buttonWrapper}>
+        <Center>
           <PrimaryButton onPress={this.handlePress}>
             Return to Cart
           </PrimaryButton>
-        </View>
+        </Center>
       </ScrollView>
     );
   }

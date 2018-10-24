@@ -8,13 +8,10 @@ import type {NavigationScreenProp} from 'react-navigation';
 
 import {clearMessages} from '../actions/errors';
 import type {ErrorsState} from '../reducers/errors';
+import Center from '../components/Center';
 import PrimaryButton from '../components/PrimaryButton';
 
 const styles = StyleSheet.create({
-  buttonWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
   container: {
     justifyContent: 'center',
     flex: 1,
@@ -73,11 +70,11 @@ class Error extends React.Component<Props> {
       <View style={styles.container}>
         <Text style={styles.emoji}>😵</Text>
         <View style={styles.messagesWrapper}>{this.renderMessages()}</View>
-        <View style={styles.buttonWrapper}>
+        <Center>
           <PrimaryButton onPress={this.handlePress}>
             Return to Cart
           </PrimaryButton>
-        </View>
+        </Center>
       </View>
     );
   }
