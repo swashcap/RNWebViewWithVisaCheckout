@@ -1,6 +1,8 @@
 // @flow
 const crypto = require('crypto');
 const test = require('tape');
+
+const {getEncryptedData} = require('../helpers.js');
 const visa = require('../../src/utils/visa.js');
 
 test('hash', t => {
@@ -42,26 +44,11 @@ test('decrypt', t => {
   );
 
   const data = '{"greetings": "hello"}';
+  const key = 'key';
   const iv = Buffer.alloc(16).fill('0');
-  const cipher = crypto.createCipheriv(
-    'AES-256-CBC',
-    visa.hash('key'), // key
-    iv
-  );
-  const encrypted = Buffer.concat([
-    cipher.update(Buffer.from(data)),
-    cipher.final(),
-  ]);
 
   t.equal(
-    visa
-      .decrypt(
-        Buffer.concat([visa.getHmac(encrypted, 'key'), iv, encrypted]).toString(
-          'base64'
-        ),
-        'key'
-      )
-      .toString('utf8'),
+    visa.decrypt(getEncryptedData(data, key, iv), key).toString('utf8'),
     data
   );
 });
