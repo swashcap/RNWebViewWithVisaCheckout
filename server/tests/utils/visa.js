@@ -52,3 +52,22 @@ test('decrypt', t => {
     data
   );
 });
+
+test('decryptVisa', t => {
+  t.plan(1);
+
+  const data = {
+    hello: 'hi',
+  };
+  const key = 'my secret key';
+  const iv = Buffer.alloc(16).fill('1');
+
+  t.deepEqual(
+    visa.decryptVisa(
+      getEncryptedData(key, process.env.VISA_CHECKOUT_SHARED_SECRET || '', iv),
+      getEncryptedData(JSON.stringify(data), key, iv)
+    ),
+    data,
+    'decrypts visa payload data'
+  );
+});
