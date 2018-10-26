@@ -67,6 +67,14 @@ const INITIAL_ITEMS = {
     price: 5.95,
     quantity: 4,
   },
+  '5': {
+    id: 'def123',
+    imageUri:
+      'https://i5.walmartimages.com/asr/6bbc870c-d2f9-41c7-8eb6-eeb1ee662a71_2.5820f06b3a6e4d3dcb25ee59e6228d55.jpeg?odnWidth=160&odnHeight=160&odnBg=ffffff',
+    name: 'Google Chromecast 3rd Generation',
+    price: 35,
+    quantity: 1,
+  },
 };
 
 const INITIAL_STATE = {
