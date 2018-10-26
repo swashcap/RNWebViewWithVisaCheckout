@@ -31,6 +31,7 @@ render(app, {
 });
 
 app.use(get('/checkout', checkout));
+app.use(get('/payment/:callId', payment.get));
 app.use(post('/payment', payment.post));
 
 if (require.main === module) {

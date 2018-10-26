@@ -6,6 +6,49 @@ const {getEncryptedData} = require('../helpers.js');
 const visa = require('../../src/utils/visa.js');
 const payment = require('../../src/routes/payment.js');
 
+test('payment GET errors', t => {
+  t.plan(2);
+
+  const spy = sinon.spy();
+
+  payment.get({
+    visaCallIds: {},
+    throw: spy,
+  });
+  payment.get(
+    {
+      visaCallIds: {},
+      throw: spy,
+    },
+    'non-existent-id'
+  );
+
+  t.equal(spy.args[0][0], 400);
+  t.equal(spy.args[1][0], 404);
+});
+
+test.only('payment GET success', t => {
+  t.plan(1);
+
+  const setBody = sinon.spy();
+  const item = {};
+
+  payment.get(
+    {
+      set body(value) {
+        setBody(value);
+        return value;
+      },
+      visaCallIds: {
+        callId: item,
+      },
+    },
+    'callId'
+  );
+
+  t.equal(setBody.args[0][0], item);
+});
+
 test('payment POST body errors', t => {
   t.plan(2);
 

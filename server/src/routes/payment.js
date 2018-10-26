@@ -12,6 +12,21 @@ type VisaRequestBody = {
 */
 
 /**
+ * Get decrypted payment data from a Visa Checkout callId.
+ */
+const get = (ctx /*: any */, callId /*: ?string */) => {
+  if (callId) {
+    if (callId in ctx.visaCallIds) {
+      ctx.body = ctx.visaCallIds[callId];
+    } else {
+      ctx.throw(404);
+    }
+  } else {
+    ctx.throw(400);
+  }
+};
+
+/**
  * This route expects to receive a successful payment response from Visa's
  * Checkout API.
  *
@@ -53,4 +68,4 @@ const post = (ctx /*: any */) => {
   }
 };
 
-module.exports = {post};
+module.exports = {get, post};
