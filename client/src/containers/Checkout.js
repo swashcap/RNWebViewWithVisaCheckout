@@ -7,6 +7,7 @@ import type {NavigationScreenProp} from 'react-navigation';
 
 import {addMessage} from '../actions/errors';
 import type {CartState} from '../reducers/cart';
+import {API_BASE_URL} from '../utils/config';
 
 type Props = {
   dispatch: Dispatch<any>,
@@ -37,7 +38,7 @@ class Checkout extends React.Component<Props> {
   getSourceURI = () => {
     const {total} = this.props;
 
-    return `http://dev.walmart.com:4000/checkout?subtotal=${total}`;
+    return `${API_BASE_URL}/checkout?subtotal=${total}`;
   };
 
   /**
