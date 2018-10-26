@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
-    paddingVertical: 10,
+  scrollViewSpacer: {
+    paddingVertical: 5,
   },
 });
 
@@ -48,7 +48,8 @@ class Cart extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView>
+          <View style={styles.scrollViewSpacer} />
           {Object.keys(cart.items).map(key => {
             const item = cart.items[key];
 
@@ -70,6 +71,7 @@ class Cart extends React.Component<Props> {
               />
             );
           })}
+          <View style={styles.scrollViewSpacer} />
         </ScrollView>
         <CartFooter onPress={() => navigation.navigate('Checkout')}>
           {formatPrice(cart.total)}
