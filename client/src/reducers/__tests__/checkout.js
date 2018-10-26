@@ -5,5 +5,5 @@ import reducer from '../checkout';
 
 test('set callId', () => {
   const callId = 'sample-call-id';
-  expect(reducer('', setCallId(callId))).toBe(callId);
+  expect(reducer({callId: ''}, setCallId(callId))).toEqual({callId});
 });

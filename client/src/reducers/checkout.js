@@ -2,14 +2,22 @@
 import {CHECKOUT_SET_CALL_ID} from '../actions/checkout';
 import type {CheckoutAction} from '../actions/checkout';
 
-export type CheckoutState = string;
+export type CheckoutState = {
+  callId: string,
+};
+
+const INITIAL_STATE = {
+  callId: '',
+};
 
 const reducer = (
-  state: CheckoutState = '',
+  state: CheckoutState = INITIAL_STATE,
   action: CheckoutAction
 ): CheckoutState => {
   if (action.type === CHECKOUT_SET_CALL_ID) {
-    return action.payload.callId;
+    return {
+      callId: action.payload.callId,
+    };
   }
 
   return state;
