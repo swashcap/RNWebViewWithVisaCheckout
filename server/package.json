@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "test": "tape 'tests/**/*.js'"
+    "test": "NODE_ENV=test tape 'tests/**/*.js'"
   },
   "devDependencies": {
     "sinon": "^7.1.0",

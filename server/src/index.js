@@ -17,6 +17,12 @@ const payment = require('./routes/payment.js');
 const app = new Koa();
 const port = process.env.PORT || 4000;
 
+/**
+ * Visa `callid` map for storing and retrieving payment data. In the real world
+ * this should be a database with queued reads/writes.
+ */
+app.context.visaCallIds = {};
+
 app.use(logger());
 app.use(koaStatic(path.resolve(__dirname, '../public')));
 render(app, {
