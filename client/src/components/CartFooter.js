@@ -3,11 +3,12 @@ import * as React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
 import PrimaryButton from './PrimaryButton';
+import {activityBackground, colorPrimaryLight} from '../utils/colors';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    borderColor: 'lightgray',
+    backgroundColor: activityBackground,
+    borderColor: colorPrimaryLight,
     borderTopWidth: 1,
   },
   text: {

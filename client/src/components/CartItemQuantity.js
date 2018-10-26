@@ -2,12 +2,14 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import {colorPrimary} from '../utils/colors';
+
 const styles = StyleSheet.create({
   quantityText: {
     fontWeight: '700',
   },
   text: {
-    color: 'dimgray',
+    color: colorPrimary,
   },
 });
 

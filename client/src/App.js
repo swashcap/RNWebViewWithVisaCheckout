@@ -15,6 +15,7 @@ import Checkout from './containers/Checkout';
 import Error from './containers/Error';
 import OrderConfirmation from './containers/OrderConfirmation';
 import configureStore from './store/configureStore';
+import {activityBackground} from './utils/colors';
 
 const StackNavigator = createStackNavigator(
   {
@@ -25,7 +26,7 @@ const StackNavigator = createStackNavigator(
   },
   {
     cardStyle: {
-      backgroundColor: 'white',
+      backgroundColor: activityBackground,
     },
     initialRouteName: 'Cart',
   }

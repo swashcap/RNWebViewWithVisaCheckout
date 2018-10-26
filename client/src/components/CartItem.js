@@ -4,6 +4,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 
 import CartItemQuantity from './CartItemQuantity';
 import SecondaryButton from './SecondaryButton';
+import {colorPrimaryLight, colorPrimary} from '../utils/colors';
 
 const styles = StyleSheet.create({
   bottomWrapper: {
@@ -39,11 +40,11 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
   },
   priceText: {
-    color: 'dimgray',
+    color: colorPrimary,
     fontSize: 14,
   },
   priceTextWithSale: {
-    color: 'gray',
+    color: colorPrimaryLight,
     paddingLeft: 3,
     textDecorationLine: 'line-through',
   },

@@ -21,9 +21,9 @@ form {
 
 button {
   background: transparent;
-  border: 1px solid royalblue;
+  border: 1px solid #1976d2;
   border-radius: 4px;
-  color: royalblue;
+  color: #1976d2;
   cursor: pointer;
   font-size: 17px;
   font-weight: 600;
@@ -52,7 +52,7 @@ button {
 }
 .order-summary tfoot th,
 .order-summary tfoot td {
-  border-top: thin solid gray;
+  border-top: thin solid #718792;
   font-size: 125%;
   line-height: 1.25;
 }
@@ -61,7 +61,7 @@ button {
   text-align: center;
 }
 .visa-checkout span {
-  color: gray;
+  color: #455a64;
   display: block;
   font-size: 17;
   margin-bottom: 1rem;

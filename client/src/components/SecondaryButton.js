@@ -4,15 +4,17 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import type {ViewStyleProp} from 'StyleSheet';
 import type {PressEvent} from 'CoreEventTypes';
 
+import {colorAccent} from '../utils/colors';
+
 const styles = StyleSheet.create({
   text: {
-    color: 'royalblue',
+    color: colorAccent,
     fontSize: 12,
     textAlign: 'center',
     textDecorationLine: 'underline',
   },
   wrapper: {
-    borderColor: 'royalblue',
+    borderColor: colorAccent,
     borderStyle: 'solid',
     borderWidth: 1,
     borderRadius: 2,
