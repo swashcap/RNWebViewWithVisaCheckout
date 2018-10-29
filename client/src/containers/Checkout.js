@@ -66,12 +66,12 @@ class Checkout extends React.Component<Props> {
         dispatch(setCallId(callId));
         fetch(`${API_BASE_URL}/payments`, {
           method: 'POST',
-          body: {
+          body: JSON.stringify({
             callId,
             encKey,
             encPaymentData,
             paymentMethodType,
-          },
+          }),
           headers: {
             'Content-Type': 'application/json',
           },
