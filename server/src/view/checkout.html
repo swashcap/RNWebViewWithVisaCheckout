@@ -45,6 +45,10 @@
         currencyCode: 'USD',
         subtotal: <%= total %>
       },
+      // TODO: Un-comment when Visa enables 'full' payload response for account
+      // settings: {
+      //   dataLevel: 'full'
+      // }
     });
     V.on('payment.success', function(payment) {
       postMessage(
