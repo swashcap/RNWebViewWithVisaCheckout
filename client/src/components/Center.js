@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
+import type {ViewProps} from 'ViewPropTypes';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,14 +10,15 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
-  children?: React.Node,
-};
-
-export default class Center extends React.Component<Props> {
+export default class Center extends React.Component<ViewProps> {
   render() {
-    const {children} = this.props;
+    const {children, style, ...rest} = this.props;
+    const rootStyle = style ? [styles.container, style] : styles.container;
 
-    return <View style={styles.container}>{children}</View>;
+    return (
+      <View style={rootStyle} {...rest}>
+        {children}
+      </View>
+    );
   }
 }
