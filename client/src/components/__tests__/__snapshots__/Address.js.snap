@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderColor": "#718792",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "padding": 14,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "paddingLeft": 1,
+        "paddingRight": 14,
+        "paddingTop": 3,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/icons/user.png",
+        }
+      }
+      style={
+        Object {
+          "height": 24,
+          "width": 24,
+        }
+      }
+    />
+  </View>
+  <View
+    style={Object {}}
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 17,
+          "fontWeight": "700",
+          "lineHeight": 20,
+          "marginBottom": 5,
+        }
+      }
+    >
+      Bob Bob
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontSize": 15,
+          "lineHeight": 20,
+        }
+      }
+    >
+      1234 Main Street
+    </Text>
+    <Text
+      style={
+        Object {
+          "fontSize": 15,
+          "lineHeight": 20,
+        }
+      }
+    >
+      Anytown DC 10001, USA
+    </Text>
+  </View>
+</View>
+`;
