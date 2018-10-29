@@ -78,7 +78,10 @@ class Checkout extends React.Component<Props> {
         })
           .then(response => {
             if (!response.ok) {
-              throw new Error(`Payment request failed: ${response.statusText}`);
+              throw new Error(
+                `Payment request failed: ${response.statusText ||
+                  response.status}`
+              );
             }
 
             return response.json();
