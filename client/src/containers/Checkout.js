@@ -5,6 +5,7 @@ import {WebView} from 'react-native';
 import type {Dispatch} from 'redux';
 import type {NavigationScreenProp} from 'react-navigation';
 
+import {setCallId} from '../actions/checkout';
 import {addMessage} from '../actions/errors';
 import type {CartState} from '../reducers/cart';
 import {API_BASE_URL} from '../utils/config';
@@ -55,8 +56,40 @@ class Checkout extends React.Component<Props> {
 
     if (typeof message === 'object' && message.type) {
       if (message.type === 'payment.success') {
-        debugger;
-        navigation.navigate('OrderConfirmation');
+        const {
+          callid: callId,
+          encKey,
+          encPaymentData,
+          paymentMethodType,
+        } = message.data;
+
+        dispatch(setCallId(callId));
+        fetch(`${API_BASE_URL}/payments`, {
+          method: 'POST',
+          body: {
+            callId,
+            encKey,
+            encPaymentData,
+            paymentMethodType,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Payment request failed: ${response.statusText}`);
+            }
+
+            return response.json();
+          })
+          .then(() => {
+            navigation.navigate('OrderConfirmation');
+          })
+          .catch(error => {
+            dispatch(addMessage(error.message));
+            navigation.navigate('Error');
+          });
       } else if (message.type === 'payment.cancel') {
         dispatch(addMessage('Visa Checkout payment cancelled'));
         navigation.navigate('Error');
