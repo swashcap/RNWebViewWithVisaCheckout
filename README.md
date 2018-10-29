@@ -1,6 +1,47 @@
 # RNWebViewWithVisaCheckout
 
-_Testing Visa’s Checkout SDK in a React Native WebView_
+_Testing [Visa’s Checkout](https://developer.visa.com/capabilities/visa_checkout) SDK in a React Native WebView_
+
+## Workflow
+
+The following details this repository's workflow between a React Native application and Visa Checkout's JavaScript SDK.
+
+### 1. Cart
+
+This is a 100% React Native view powered by stubbed products. Pressing the “Continue” button animates to the next view by triggering a navigation action. (Navigation is powered by [react-navigation](https://reactnavigation.org) in this example.)
+
+|Android|iOS|
+|:---:|:---:|
+|![Android Cart](docs/android-cart.jpg)|![iOS Cart](docs/ios-cart.jpg)|
+
+### 2. Checkout
+
+The content of this view is a [React Native WebView](https://facebook.github.io/react-native/docs/webview); its web page is rendered by the server. The “Checkout” button is included for display purposes and does not function. The server renders the “Visa Checkout” button per [Visa’s integration guide](https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_your_web_page).
+
+|Android|iOS|
+|:---:|:---:|
+|![Android Checkout](docs/android-checkout.jpg)|![iOS Checkout](docs/ios-checkout.jpg)|
+
+### 3. Visa Flow
+
+Pressing the “Visa Checkout” button leads the user into Visa’s flow (these screenshots show a repeat customer flow). This happens in the same Checkout WebView.
+
+|Android|iOS|
+|:---:|:---:|
+|![Android Visa Step 1](docs/android-visa-1.jpg)|![iOS Visa Step 1](docs/ios-visa-1.jpg)|
+|![Android Visa Step 2](docs/android-visa-2.jpg)|![iOS Visa Step 2](docs/ios-visa-2.jpg)|
+|![Android Visa Step 3](docs/android-visa-3.jpg)|![iOS Visa Step 3](docs/ios-visa-3.jpg)|
+|![Android Visa Step 4](docs/android-visa-4.jpg)|![iOS Visa Step 4](docs/ios-visa-4.jpg)|
+
+The user enters authentication credentials, selects a payment method stored within Visa Checkout, and presses “Continue,” returning to the original web page. Visa offers new user signup and payment method editing/updating workflows, too.
+
+### 4. Successful Payment
+
+The Visa Checkout SDK sends a `payment.success` event containing encrypted payment method data to a registered handler within the WebView. This handler passes the data back to the native application using [the WebView’s `onMessage` property](https://facebook.github.io/react-native/docs/webview#onmessage), which passes the data to the server. The server decrypts the payment method using a secret Visa Checkout key and stores it for processing.
+
+### 5. Order Confirmation
+
+The client contacts the server to retrieve payment processing status, then displays a successful order confirmation view. _(Note: working code awaiting a “full” access account from Visa Developer relations.)_
 
 ## Setup
 
